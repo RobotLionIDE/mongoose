@@ -1,0 +1,106 @@
+author: mongoose-os
+description: A Mongoose OS app skeleton
+version: 1.0
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+# Optional. List of tags for online search.
+tags:
+  - c
+  - js
+
+# List of files / directories with C sources. No slashes at the end of dir names.
+sources:
+  - src
+
+# List of dirs. Files from these dirs will be copied to the device filesystem
+filesystem:
+  - fs
+
+includes:
+  - inc
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/mongoose
+  - origin: https://github.com/mongoose-os-libs/rpc-common
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/rpc-service-gpio
+  - origin: https://github.com/mongoose-os-libs/mjs
+  - origin: https://github.com/RobotlionIDE/arduino_sh1106
+  - origin: https://github.com/mongoose-os-libs/bt-common
+  - origin: https://github.com/mongoose-os-libs/rpc-gatts
+  - origin: https://github.com/mongoose-os-libs/pwm
+
+config_schema:
+  - ["lion", "o", {"title": "Robot lion settings"}]
+  - ["lion.name", "s", "Robot Lion",  {title: "Robot Lion"}]
+
+  - ["lion.firmware_version", "i", 1,  {title: "Firmware version"}]
+  - ["lion.fileware_version", "i", 0,  {title: "Fileware version"}]
+
+  - ["lion.A0", "i", 39,  {title: "Analog 0"}]
+  - ["lion.A1", "i", 34,  {title: "Analog 1"}]
+  - ["lion.A2", "i", 36,  {title: "Analog 2"}]
+  - ["lion.A3", "i", 35,  {title: "Analog 3"}]
+
+  - ["lion.RX", "i", 16,  {title: "RX"}]
+  - ["lion.TX", "i", 17,  {title: "TX"}]
+
+  - ["lion.BlueL", "i", 5,   {title: "Blue left"}]
+  - ["lion.BlueR", "i", 32,  {title: "Blue right"}]
+  - ["lion.RedL",  "i", 13,  {title: "Red left"}]
+  - ["lion.RedR",  "i", 25,  {title: "Red right"}]
+
+  - ["lion.TRIG", "i", 26,  {title: "Ultrasonic Trigger"}]
+  - ["lion.ECHO", "i", 27,  {title: "Ultrasonic Echo"}]
+
+  - ["lion.MR_DIR", "i", 23,  {title: "Left motor dirrection"}]
+  - ["lion.MR_EN",  "i", 14,  {title: "Left motor enable"}]
+
+  - ["lion.ML_DIR", "i", 18,  {title: "Right motor dirrection"}]
+  - ["lion.ML_EN",  "i", 19,  {title: "Light motor enable"}]
+  
+  - ["lion.START_STOP", "b", false,  {title: "Start/stop button enable"}]
+
+  - ["lion.setup", "o", {"title": "Pin config predefine"}]
+
+  - ["lion.setup.A0", "i", 0,  {title: "A0 mode"}]
+  - ["lion.setup.A1", "i", 0,  {title: "A1 mode"}]
+  - ["lion.setup.A2", "i", 0,  {title: "A2 mode"}]
+  - ["lion.setup.A3", "i", 0,  {title: "A3 mode"}]
+  
+  - ["lion.setup.RX", "i", 0,  {title: "A2 mode"}]
+  - ["lion.setup.TX", "i", 1, {title: "A3 mode"}]
+
+  - ["lion.setup.BlueL", "i", 1,  {title: "BlueL mode"}]
+  - ["lion.setup.BlueR", "i", 1,  {title: "BlueR mode"}]
+  - ["lion.setup.RedL",  "i", 1,  {title: "RedL mode"}]
+  - ["lion.setup.RedR",  "i", 1,  {title: "RedR mode"}]
+
+  - ["lion.setup.TRIG", "i", 1, {title: "Ultrasonic Trigger pin mode"}]
+  - ["lion.setup.ECHO", "i", 0,  {title: "Ultrasonic Echo pin mode"}]
+
+  - ["lion.setup.MR_DIR", "i", 1,  {title: "Motor Right direction mode"}]
+  - ["lion.setup.MR_EN",  "i", 1,  {title: "Motor Right enable mode"}]
+  - ["lion.setup.ML_DIR", "i", 1,  {title: "Motor Left direction mode"}]
+  - ["lion.setup.ML_EN",  "i", 1,  {title: "Motor Left enable mode"}]
+
+
+  - ["bt.enable", true]
+  - ["bt.keep_enabled", true]
+  - ["bt.dev_name", "Robot Lion"]
+  
+  - ["bt.gatts.min_sec_level", 0]
+  - ["bt.gatts.require_pairing", false]
+
+  - ["debug.level", 0]
+
+  - ["sys.wdt_timeout", 600]
+
+
+# Used by the mos tool to catch mos binaries incompatible with this file format
+manifest_version: 2017-09-29
