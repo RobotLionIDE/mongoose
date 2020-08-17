@@ -89,6 +89,20 @@ config_schema:
   - ["lion.setup.ML_DIR", "i", 1,  {title: "Motor Left direction mode"}]
   - ["lion.setup.ML_EN",  "i", 1,  {title: "Motor Left enable mode"}]
 
+  - ["lion.setttings", "o", {"title": "Robot assembly settings"}]
+
+  - ["lion.setttings.MR_REVERSE", "b", false,  {title: "Right motor reverse"}]
+  - ["lion.setttings.ML_REVERSE", "b", false,  {title: "Left motor reverse"}]
+  
+  - ["lion.pad", "o", {"title": "Gamepad settings"}]
+
+  - ["lion.pad.enabled", "b", false, {"title": "Gamepad enabled"}]
+  - ["lion.pad.commandtemplate", "s", "", {"title": "Direction config"}]
+  
+  - ["lion.pad.left", "o", {"title": "Gamepad left area settings"}]
+  - ["lion.pad.right", "o", {"title": "Gamepad left area settings"}]
+
+
 
   - ["bt.enable", true]
   - ["bt.keep_enabled", true]
