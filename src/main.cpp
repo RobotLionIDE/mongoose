@@ -26,7 +26,7 @@
 #include "Adafruit_SH1106.h"
 #include "mgos_arduino_sh1106.h"
 
-Adafruit_SH1106 display(SH1106_LCDWIDTH, SH1106_LCDHEIGHT, Wire);
+Adafruit_SH1106 display(SH1106_LCDWIDTH, SH1106_LCDHEIGHT);
 
 
 enum mgos_app_init_result mgos_app_init(void) 
