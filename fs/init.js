@@ -46,8 +46,12 @@ d.setTextColor(Adafruit_SH1106.WHITE);
 d.setTextSize(1);
 d.setTextWrap(true);
 
-d.setCursor(0,0);
+d.setCursor(4,0);
 d.write(Cfg.get('bt.dev_name'));
+d.setCursor(4,8);
+d.write('Mongoose: ' + Cfg.get('lion.firmware_version'));
+d.setCursor(4,16);
+d.write('FW: ' + Cfg.get('lion.fileware_version'));
 d.display();
 
 

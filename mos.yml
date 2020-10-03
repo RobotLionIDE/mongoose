@@ -39,8 +39,8 @@ config_schema:
   - ["lion", "o", {"title": "Robot lion settings"}]
   - ["lion.name", "s", "Robot Lion",  {title: "Robot Lion"}]
 
-  - ["lion.firmware_version", "i", 1,  {title: "Firmware version"}]
-  - ["lion.fileware_version", "i", 0,  {title: "Fileware version"}]
+  - ["lion.firmware_version", "s", "1",  {title: "Firmware version"}]
+  - ["lion.fileware_version", "s", "0",  {title: "Fileware version"}]
 
   - ["lion.A0", "i", 39,  {title: "Analog 0"}]
   - ["lion.A1", "i", 34,  {title: "Analog 1"}]
