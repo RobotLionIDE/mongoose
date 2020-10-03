@@ -32,18 +32,5 @@ Adafruit_SH1106 display(SH1106_LCDWIDTH, SH1106_LCDHEIGHT);
 enum mgos_app_init_result mgos_app_init(void) 
 {
   Wire.begin(SH1106_128_64);
-  display.begin(SH1106_SWITCHCAPVCC, SH1106_I2C_ADDRESS);
-  display.clearDisplay();
-  display.setTextSize(2);
-  display.setTextColor(WHITE);
-  
-  display.setCursor(0,5);
-  display.println(mgos_sys_config_get_lion_name());
-  
-  display.setTextSize(1);
-
-  
-  display.display();
-  
   return MGOS_APP_INIT_SUCCESS;
 }
