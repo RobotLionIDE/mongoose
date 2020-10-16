@@ -1,4 +1,4 @@
-let LionSetup = function()(
+let LionSetup = function(){
     GPIO.set_mode(Cfg.get('lion.A0'), Cfg.get('lion.setup.A0'));
     GPIO.set_mode(Cfg.get('lion.A1'), Cfg.get('lion.setup.A1'));
     GPIO.set_mode(Cfg.get('lion.A2'), Cfg.get('lion.setup.A2'));
@@ -19,5 +19,4 @@ let LionSetup = function()(
     GPIO.set_mode(Cfg.get('lion.MR_EN'), Cfg.get('lion.setup.MR_EN'));
     GPIO.set_mode(Cfg.get('lion.ML_DIR'), Cfg.get('lion.setup.ML_DIR'));
     GPIO.set_mode(Cfg.get('lion.ML_EN'), Cfg.get('lion.setup.ML_EN'));
-    print('Setup Ok');
 };

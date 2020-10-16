@@ -16,6 +16,7 @@ load('lion_bootstrap.js');
 load('lion_fw.js');
 
 LionSetup();
+FWInit();
 
 GATTS.registerService(
     "5bf81ab8-db52-11ea-87d0-0242ac130003",
@@ -40,21 +41,6 @@ GATTS.registerService(
     }
   );
 
-d.begin(0x2, 0x3C);
-d.clearDisplay();
-d.setTextColor(Adafruit_SH1106.WHITE);
-d.setTextSize(1);
-d.setTextWrap(true);
-
-d.setCursor(4,0);
-d.write(Cfg.get('bt.dev_name'));
-d.setCursor(4,8);
-d.write('Mongoose: ' + Cfg.get('lion.firmware_version'));
-d.setCursor(4,16);
-d.write('FW: ' + Cfg.get('lion.fileware_version'));
-d.display();
-
-
 //************************** Core RPC **************************
 RPC.addHandler('LION.firmware', function(args){
   return Cfg.get('lion.firmware_version');
@@ -71,15 +57,3 @@ RPC.addHandler('LION.start', function(args){
 RPC.addHandler('LION.stop', function(args){
   return LionStop();
 });
-
-//************************** Test funcs **************************
-
-RPC.addHandler('Led', function(args){
-  GPIO.toggle(5);
-  return "0008";
-});
-
-Timer.set(1000, Timer.REPEAT, function() {
-  GPIO.toggle(Cfg.get('lion.BlueL'));
-}, null);
-

@@ -28,7 +28,6 @@
 
 Adafruit_SH1106 display(SH1106_LCDWIDTH, SH1106_LCDHEIGHT);
 
-
 enum mgos_app_init_result mgos_app_init(void) 
 {
   Wire.begin(SH1106_128_64);
