@@ -225,6 +225,7 @@ config_schema:
 
   - ["bt.enable", true]
   - ["bt.keep_enabled", true]
+  - ["bt.random_address", "b", false, {title: "Use a consistent BT MAC address"}]
   - ["bt.dev_name", "Robot Lion"]
   
   - ["bt.gatts.min_sec_level", 0]
