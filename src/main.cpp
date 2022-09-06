@@ -26,6 +26,9 @@
 #include <Wire.h>
 #include "Adafruit_SH1106.h"
 #include "mgos_arduino_sh1106.h"
+#include "md5_1.h"
+#include "mgos_sys_config.h"
+#include "mgos_config_util.h"
 
 Adafruit_SH1106 display(SH1106_LCDWIDTH, SH1106_LCDHEIGHT);
 
@@ -40,9 +43,32 @@ static void sum_cb(struct mg_rpc_request_info *ri, void *cb_arg, struct mg_rpc_f
   (void) fi;
 }
 
+static void calc_config_hash(struct mg_rpc_request_info *ri, void *cb_arg, struct mg_rpc_frame_info *fi, struct mg_str args)
+{
+  struct mgos_config *cfg = &mgos_sys_config;
+  const struct mgos_conf_entry *schema = mgos_config_schema();
+  
+  struct mbuf conf_mbuf;
+  mbuf_init(&conf_mbuf, 0);
+  mgos_conf_emit_cb(((char *) cfg) + schema->offset, NULL, schema, false,
+                    &conf_mbuf, NULL, NULL);
+  
+  MD5 md5;
+  md5.update(conf_mbuf.buf, conf_mbuf.size);
+  md5.finalize();
+
+  char hash[32 + 1]={0};
+  md5.hexdigest(hash, sizeof(hash));
+  
+  mg_rpc_send_responsef(ri, "{ ConfigHash: \"%s\" }", hash);
+
+  mbuf_free(&conf_mbuf);
+}
+
 enum mgos_app_init_result mgos_app_init(void) 
 {
   mg_rpc_add_handler(mgos_rpc_get_global(), "Sum", "{a: %lf, b: %lf}", sum_cb, NULL);
+  mg_rpc_add_handler(mgos_rpc_get_global(), "Config.GetHash", 0, calc_config_hash, NULL);
   Wire.begin(SH1106_128_64);
   return MGOS_APP_INIT_SUCCESS;
 }
